@@ -44,8 +44,10 @@ else
 {
 	<script>
 		$(document).ready(function () {
+			$("#customers").DataTable();
+
 			// First, get the customers table,
-			// Then, .on method is used to handle the click on the .js-delete button
+			// Then, .on method is used to handle the click on the .js-delete button.
 			$("#customers").on("click", ".js-delete", function () {
 				var button = $(this); // in this function, 'this' reffers to the button.
 
