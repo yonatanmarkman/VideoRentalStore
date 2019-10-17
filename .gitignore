@@ -1,0 +1,8 @@
+# Package DLLs
+VidlyProject/Vidly/Vidly/bin/*.dll
+
+# Object files
+VidlyProject/Vidly/Vidly/obj/
+
+# Package downloads
+VidlyProject/Vidly/packages/
