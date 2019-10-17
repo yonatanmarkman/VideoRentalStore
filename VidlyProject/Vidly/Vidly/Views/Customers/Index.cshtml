@@ -50,21 +50,22 @@ else
 			$("#customers .js-delete").on("click", function () {
 				var button = $(this); // in this function, 'this' reffers to the button.
 
-				if (confirm("Are you sure you want to delete this customer?"))
-				{
-					// Using ajax, the js sends a DELETE request with the id,
-					// so the customer is deleted from the DB.
-					// The request can be found in Chrome Developer tools, in Network tab, filter by XHR.
-					$.ajax({
-						url: "/api/customers/" + button.attr("data-customer-id"),
-						method: "DELETE",
-						success: function () {
-							// remove the clicked button's parent from the display,
-							// which is the table row we deleted.
-							button.parents("tr").remove();
-						}
-					});
-				}
+				bootbox.confirm("Are you sure you want to delete this customer?", function (result) {
+					if (result) {
+						// Using ajax, the js sends a DELETE request with the id,
+						// so the customer is deleted from the DB.
+						// The request can be found in Chrome Developer tools, in Network tab, filter by XHR.
+						$.ajax({
+							url: "/api/customers/" + button.attr("data-customer-id"),
+							method: "DELETE",
+							success: function () {
+								// remove the clicked button's parent from the display,
+								// which is the table row we deleted.
+								button.parents("tr").remove();
+							}
+						});
+					}
+				});
 			});
 		});
 	</script>
