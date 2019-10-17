@@ -6,3 +6,9 @@ VidlyProject/Vidly/Vidly/obj/
 
 # Package downloads
 VidlyProject/Vidly/packages/
+
+# bin folder
+VidlyProject/Vidly/Vidly/bin/
+
+# .vs config folder
+VidlyProject/Vidly/.vs/config/
