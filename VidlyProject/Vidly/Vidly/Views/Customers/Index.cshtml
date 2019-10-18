@@ -4,14 +4,9 @@
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2>Customers</h2>
 
-@if (!Model.Any())
-{
-	<p>We don't have any customers yet.</p>
-}
-else
-{
+
 <table id="customers" class="table table-bordered table-hover">
 	<thead>
 		<tr>
@@ -21,30 +16,40 @@ else
 		</tr>
 	</thead>
 	<tbody>
-		@foreach (var customer in Model)
-		{
-		<tr>
-			<td>
-				@Html.ActionLink(customer.Name, "Edit", "Customers", new
-				{
-					id = customer.Id
-				}, null)
-			</td>
-			<td>@customer.MembershipType.Name</td>
-			<td>
-				<button data-customer-id="@customer.Id" class="btn-link js-delete">Delete</button>
-			</td>
-		</tr>
-		}
+		
 	</tbody>
 </table>
-}
+
 
 @section scripts
 {
 	<script>
+		// Use DataTable framework to get the customers list from our API,
+		// Then, populate the table with the objects from the list.
 		$(document).ready(function () {
-			$("#customers").DataTable();
+			var table = $("#customers").DataTable({
+				ajax: {
+					url: "/api/customers",
+					dataSrc: "" // Empty string is because we don't need to go deeper in the result.
+				},
+				columns: [
+					{
+						data: "name",
+						render: function(data, type, customer) {
+							return "<a href='/customers/edit/" + customer.id + "'>" + customer.name + "</a>";
+						}
+					},
+					{
+						data: "membershipType.name"
+					},
+					{
+						data: "id",
+						render: function(data) {
+							return "<button class='btn-link js-delete' data-customer-id=" + data + ">Delete</button>";
+						}
+					}
+				]
+			});
 
 			// First, get the customers table,
 			// Then, .on method is used to handle the click on the .js-delete button.
@@ -60,9 +65,11 @@ else
 							url: "/api/customers/" + button.attr("data-customer-id"),
 							method: "DELETE",
 							success: function () {
-								// remove the clicked button's parent from the display,
+								// First, remove the customer from the rows stored in DataTable object,
+								// then remove the customer's tr from the display,
 								// which is the table row we deleted.
-								button.parents("tr").remove();
+								// And redraw the table display.
+								table.row(button.parents("tr")).remove().draw();
 							}
 						});
 					}

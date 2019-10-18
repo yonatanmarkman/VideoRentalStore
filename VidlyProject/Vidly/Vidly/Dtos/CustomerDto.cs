@@ -20,6 +20,10 @@ namespace Vidly.Dtos
 
 		public byte MembershipTypeId { get; set; }
 
+		// MembershipType property from Customer is mapped to this dto.
+		// *This requires AutoMapper.
+		public MembershipTypeDto MembershipType { get; set; }
+
 		//[Min18YearsIfAMember]
 		public DateTime? Birthdate { get; set; }
 	}

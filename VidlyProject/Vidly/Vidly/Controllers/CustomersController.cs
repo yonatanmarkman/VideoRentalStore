@@ -52,9 +52,9 @@ namespace Vidly.Controllers
 			// built only when we start going over it, to print it in the CSHTML.
 
 			// .Include() does Eager Loading - loads the MembershipType object together with the Customer object.
-			var customers = _context.Customers.Include(c => c.MembershipType).ToList();
+			//var customers = _context.Customers.Include(c => c.MembershipType).ToList();
 
-			return View(customers);
+			return View();
 		}
 
 		// GET: Customers/Details/1
