@@ -135,7 +135,7 @@ namespace Vidly.Controllers
 			}
 		}
 
-		//
+
 		// GET: /Account/Register
 		[AllowAnonymous]
 		public ActionResult Register()
@@ -143,7 +143,7 @@ namespace Vidly.Controllers
 			return View();
 		}
 
-		//
+
 		// POST: /Account/Register
 		[HttpPost]
 		[AllowAnonymous]
@@ -152,7 +152,12 @@ namespace Vidly.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+				var user = new ApplicationUser
+				{
+					UserName = model.Email,
+					Email = model.Email,
+					DrivingLicense = model.DrivingLicense
+				};
 				var result = await UserManager.CreateAsync(user, model.Password);
 				if (result.Succeeded)
 				{

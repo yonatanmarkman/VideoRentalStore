@@ -27,8 +27,10 @@ namespace Vidly.Controllers
 		public ViewResult Index()
 		{
 			//var movies = _context.Movies.Include(m => m.Genre).ToList();
+			if (User.IsInRole(RoleName.CanManageMovies))
+				return View("List");
 
-			return View();
+			return View("ReadOnlyList");
 		}
 
 		// GET: Movies/Details/1
@@ -60,6 +62,7 @@ namespace Vidly.Controllers
 			return View("MovieForm", viewModel);
 		}
 
+		[Authorize(Roles = RoleName.CanManageMovies)] // This will override the global Authorize filter.
 		public ActionResult New()
 		{
 			var genres = _context.Genres.ToList();
