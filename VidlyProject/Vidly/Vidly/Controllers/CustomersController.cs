@@ -44,7 +44,7 @@ namespace Vidly.Controllers
 			return RedirectToAction("New", "Customers");
 		}
 
-		// GET: Customers
+		
 		public ViewResult Index()
 		{
 			// .ToList() makes the query be executed immediately, and returns the result,
