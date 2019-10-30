@@ -4,7 +4,7 @@ namespace Vidly.Migrations
 	using System.Data.Entity.Migrations;
 
 	// This migration was created from adding DrivingLicense
-	// attribute to the ApplicationUser class in IdentityModel.
+	// attribute to the ApplicationUser class (previously in IdentityModel).
 	public partial class AddDrivingLicenseToApplicationUser : DbMigration
 	{
 		public override void Up()

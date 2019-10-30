@@ -3,12 +3,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Vidly.Models
 {
-	public class ExternalLoginConfirmationViewModel
-	{
-		[Required]
-		[Display(Name = "Email")]
-		public string Email { get; set; }
-	}
 
 	public class ExternalLoginListViewModel
 	{
@@ -62,6 +56,7 @@ namespace Vidly.Models
 		public bool RememberMe { get; set; }
 	}
 
+	// Model used for registering to the site.
 	public class RegisterViewModel
 	{
 		[Required]
@@ -85,6 +80,9 @@ namespace Vidly.Models
 		[Display(Name = "Driving License")]
 		public string DrivingLicense { get; set; }
 
+		[Required]
+		[StringLength(50)]
+		public string Phone { get; set; }
 	}
 
 	public class ResetPasswordViewModel
