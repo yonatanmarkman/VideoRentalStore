@@ -12,3 +12,5 @@ VidlyProject/Vidly/Vidly/bin/
 
 # .vs config folder
 VidlyProject/Vidly/.vs/config/
+VidlyProject/Vidly/Vidly/GlimpseSecurityPolicy.cs
+VidlyProject/Vidly/.vs/
