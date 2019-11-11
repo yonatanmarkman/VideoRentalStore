@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Runtime.Caching;
 using Vidly.Models;
 using Vidly.ViewModels;
 
@@ -44,17 +45,27 @@ namespace Vidly.Controllers
 			return RedirectToAction("New", "Customers");
 		}
 
-		
+        static string Genres = "Genres";
+
 		public ViewResult Index()
 		{
-			// .ToList() makes the query be executed immediately, and returns the result,
-			// if it was without .ToList(), it would be "deferred execution" - the list would be
-			// built only when we start going over it, to print it in the CSHTML.
+            // .ToList() makes the query be executed immediately, and returns the result,
+            // if it was without .ToList(), it would be "deferred execution" - the list would be
+            // built only when we start going over it, to print it in the CSHTML.
 
-			// .Include() does Eager Loading - loads the MembershipType object together with the Customer object.
-			//var customers = _context.Customers.Include(c => c.MembershipType).ToList();
+            // .Include() does Eager Loading - loads the MembershipType object together with the Customer object.
+            //var customers = _context.Customers.Include(c => c.MembershipType).ToList();
+            
+            /*
+            if (MemoryCache.Default[Genres] == null)
+            {
+                MemoryCache.Default[Genres] = _context.Genres.ToList();
+            }
 
-			return View();
+            var genres = MemoryCache.Default[Genres] as IEnumerable<Genre>;
+            */
+
+            return View();
 		}
 
 		// GET: Customers/Details/1
