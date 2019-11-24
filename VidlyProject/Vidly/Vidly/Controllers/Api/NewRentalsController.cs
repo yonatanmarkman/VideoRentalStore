@@ -14,11 +14,11 @@ using Vidly.Dtos;
 
 namespace Vidly.Controllers.Api
 {
-    public class RentalsController : ApiController
+    public class NewRentalsController : ApiController
     {
         private ApplicationDbContext _context;
 
-        public RentalsController()
+        public NewRentalsController()
         {
             _context = new ApplicationDbContext();
         }
@@ -33,7 +33,7 @@ namespace Vidly.Controllers.Api
             // We use Single here instead of SingleOrDefault,
             // because we want to return an exception if the Id doesn't exist.
             var customer = _context.Customers.Single(
-                c => c.Id == newRental.CustomerId);
+                c => c.Id == newRental.customerId);
             /*
              If we would use SingleOrDefault, we would need to throw 
              the exception manually, like this:
@@ -44,7 +44,7 @@ namespace Vidly.Controllers.Api
             // Get all the movies m so that m.Id is inside the 
             // rented movie's Id list.
             var movies = _context.Movies.Where(
-                m => newRental.MovieIds.Contains(m.Id)).ToList();
+                m => newRental.movieIds.Contains(m.Id)).ToList();
 
             foreach (var movie in movies)
             {
